@@ -13,13 +13,13 @@ local help = {}
 	---@ret		{flt}	shift	the altered shifting value
 function approach(shift,limit,rate)
 	if shift < limit then
-		shift += rate;
+		shift = shift + rate;
 
 		if shift > limit then
 			return limit
 		end
 	else
-		shift -= rate;
+		shift = shift - rate;
 
 		if shift < limit then
 			return limit
@@ -39,13 +39,14 @@ function div(s,nl)
 	local s = s or '█'
 	local b = '\r'
 	local n = nl or 0
-	if (nl == -1) p(b)
+	if (nl == -1) then p(b)end
 	for i=1, 4 do
 		s = s..s
 	end
 	p(s)
-	if (nl == 1) p(b)
+	if (nl == 1) then p(b) end
 end
+
 
 --	Table Print
 	---@func 	pt(t)
@@ -57,6 +58,7 @@ function pt(t)
 	end
 end
 
+
 --	Table Reverse
 function reverse(t)
 	local nt = {}
@@ -66,6 +68,7 @@ function reverse(t)
 	end
 	return nt
 end
+
 
 -- Decimal to Binary
 function bin(num)
@@ -82,4 +85,9 @@ function bin(num)
 		val = val..t[i]
 	end
 	return tonumber(val)
+end
+
+--	Round Up to Nearest Whole
+function round(x)
+ return flr(x+0.5)
 end
